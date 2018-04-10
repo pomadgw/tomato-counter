@@ -1,16 +1,23 @@
 <template>
   <div id="app">
-    <Counter />
+    <Timer :duration='TOMATO_TIME' />
   </div>
 </template>
 
 <script>
-import Counter from './components/Counter';
+import Timer from './components/Timer';
+
+const TOMATO_TIME = 25 * 60;
 
 export default {
   name: 'App',
   components: {
-    Counter,
+    Timer,
+  },
+  data() {
+    return {
+      TOMATO_TIME,
+    };
   },
 };
 </script>
