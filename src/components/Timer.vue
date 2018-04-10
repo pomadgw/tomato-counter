@@ -52,14 +52,18 @@ export default {
     },
   },
   created() {
-    this.seconds = this.duration;
+    this.reset();
   },
   methods: {
+    reset() {
+      this.seconds = this.duration;
+    },
     start() {
       this.interval = setInterval(() => {
         this.seconds -= 1;
         if (this.seconds <= 0) {
           this.stop();
+          this.reset();
         }
       }, 1000);
     },
