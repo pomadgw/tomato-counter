@@ -18,9 +18,9 @@ const START_LABEL = 'Start';
 const STOP_LABEL = 'Stop';
 
 export default {
-  name: 'counter',
+  name: 'timer',
   props: {
-    seconds: {
+    duration: {
       type: Number,
       default: 0,
     },
@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       interval: null,
+      seconds: 0,
     };
   },
   computed: {
@@ -50,10 +51,16 @@ export default {
       return this.interval === null ? 'success' : 'danger';
     },
   },
+  created() {
+    this.seconds = this.duration;
+  },
   methods: {
     start() {
       this.interval = setInterval(() => {
-        this.seconds += 1;
+        this.seconds -= 1;
+        if (this.seconds <= 0) {
+          this.stop();
+        }
       }, 1000);
     },
     stop() {
